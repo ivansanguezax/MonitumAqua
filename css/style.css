@@ -595,7 +595,7 @@
     min-height: 100%;
   }
   
-  body {
+  .body {
     font-family: "Quicksand", sans-serif;
     font-weight: 500;
     color: #424949;
