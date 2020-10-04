@@ -867,7 +867,16 @@
       width: 300px;
     }
   }
-  
+
+
+.description-about{
+  margin: 30px;
+}
+.description-about h1{
+  margin-top: 10px ;
+}
+
+
 /* =======map===== */
 
 .map{
