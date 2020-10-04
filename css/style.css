@@ -1,3 +1,6 @@
+@import url(https://fonts.googleapis.com/css?family=Lora|Roboto:400,500);
+
+
 :root{
     --color-azul: #056CF2;
     --color-rojo: #F2BE22;
@@ -944,6 +947,45 @@
   opacity: 1;
   right: 0;
 }
+
+
+
+
+/* ======Cards personas===== */
+
+.description-about p{
+  text-align: center;
+  font-size: 25px;
+  font-style: var(--font);
+}
+
+.contenedor-about{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contenedor-perfil{
+  margin: 20px;
+}
+.pp img{
+  width: 150px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+.descripcion-card{
+  text-align: center;
+  font-family: var(--font);
+  
+}
+
+
+
+
+/* ============ */
+
+
 
 
 
