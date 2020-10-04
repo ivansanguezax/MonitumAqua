@@ -253,6 +253,7 @@
   
   .footer img {
     vertical-align: middle;
+    margin: 20px;
   }
   
   .footer a {
@@ -569,6 +570,9 @@
       display: block;
       text-align: center;
       border: 1px solid transparent;
+    }
+    .footer-logo{
+      margin: 20px;
     }
     .social-link {
       width: 40px;
@@ -992,10 +996,4 @@
 
 
 
-
-
-
-
-
-
-
+/* ============footer======= */
