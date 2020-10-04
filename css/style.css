@@ -157,6 +157,14 @@
     font-size: 20px;
     text-align: justify;
   }
+ .event-map{
+  color: #00AC8B;
+  border: 2px solid;
+  padding: 5px 20px;
+  
+  text-decoration: none;
+  border-radius: 5px;
+ }
   .project strong {
     font-family: 'Fjalla One', sans-serif;
   }
@@ -249,6 +257,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 20px;
   }
   
   .footer img {
@@ -301,6 +310,8 @@
     text-decoration: none;
     border-radius: 5px;
   }
+
+  
   
   .contact {
     background-color: #056fff;
