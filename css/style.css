@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Lora|Roboto:400,500);
-
 
 :root{
     --color-azul: #056CF2;
@@ -408,7 +406,7 @@
       padding: 2em;
     }
     .hero-image {
-      position: relative;
+      position: absolute;
       z-index: 1;
       left: 0;
       right: 0;
