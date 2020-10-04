@@ -138,6 +138,7 @@
     border-bottom-right-radius: 10px; */
     /* margin: 10px; */
     margin-bottom: 15px;
+
     /* margin-right
     margin-left 
     margin-top */
@@ -147,14 +148,12 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    
   }
-  .project-course,
-  .project-date,
-  .project-url {
-    margin: 10px 0;
-  }
+  
   .project-description {
     font-size: 20px;
+    text-align: justify;
   }
   .project strong {
     font-family: 'Fjalla One', sans-serif;
@@ -180,6 +179,7 @@
   
   .project-imageContainer img {
     max-width: 100%;
+    
   }
   
   .header {
@@ -286,7 +286,9 @@
     text-align: center;
   }
   .event-description {
-    text-align: left;
+    text-align: justify;
+
+    margin: 10%;
   }
   
   .event-url {
@@ -609,7 +611,7 @@
   h1 {
     text-align: center;
     height: 38px;
-    margin: 60px 0;
+    margin: 30px 0;
   }
   h1 span {
     white-space: nowrap;
@@ -861,10 +863,20 @@
     .input-flex-container {
       width: 340px;
     }
+    .button{
+      margin: 10% ;
+    }
+    
   }
   @media (max-width: 400px) {
     .input-flex-container {
       width: 300px;
+    }
+    .button{
+      margin: 10%;
+    }
+    .image-map{
+      width: 500px;
     }
   }
 
@@ -879,22 +891,7 @@
 
 /* =======map===== */
 
-.map{
-  display: grid;
-  grid-template-columns: auto auto;
-  padding: 10px;
-  margin: 50px;
-}
-.grid-item{
-  background-color: var(--color-blanco);
-  text-align: center;
-  padding: 20px;
-}
-.image-map img{
-  width: 100%;
-  height: 100%;
-  
-}
+
 
 .descripcion-map h1{
   font-size: 60px;
@@ -903,20 +900,24 @@
   text-align: justify;
   font-size: 20px;
 }
+.description-about{
+  text-align: justify;
+}
 
 .button {
   display: inline-block;
   border-radius: 4px;
-  background-color: #f4511e;
+  background-color: #22b573;
   border: none;
   color: #FFFFFF;
   text-align: center;
   font-size: 28px;
   padding: 20px;
-  width: 200px;
+  width: 150px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 5px;
+  margin-top: 25px;
+
 }
 
 .button span {
@@ -943,6 +944,7 @@
   opacity: 1;
   right: 0;
 }
+
 
 
 
