@@ -1,0 +1,21 @@
+body {
+    font-family: helvetica, arial, sans-serif;
+    margin: 2em;
+  }
+  
+  h1 {
+    font-style: italic;
+    color: #373fff;
+  }
+
+  .imagen_contenedor img{
+      width: 500px;
+      height: 500px;
+
+  }
+
+#map{
+    width: 400px;
+    height: 300px;
+}
+

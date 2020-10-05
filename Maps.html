@@ -2,162 +2,142 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Create a heatmap layer</title>
+<title>Maps</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-<link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-<style>
-	body { margin: 0; padding: 0; }
-	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-</style>
-</head>
-<body>
-<div id="map"></div>
+<script src="Js/main.js" defer></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="img/Logo1.png" />
 
-<script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnNhbmd1ZXpheCIsImEiOiJja2Zmam1sNHUwZmNsMnRubW94OWJ6cHRqIn0.e6q5KOwIX3EAetV5K3krVA';
+<link
+      href="https://fonts.googleapis.com/css?family=Fjalla+One|Source+Sans+Pro"
+      rel="stylesheet"/>
+    
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
+    
+     </head>
+<i class="icon-menu burger-button" id="burger-menu"></i>
+    <header class="header">
+      <div class="container">
+        <figure class="logo">
+          <img
+            src="img/Ln.png"
+            height="50"
+            alt="Logo"
+          />
+        </figure>
+        <nav class="menu">
+            <ol>
+              <li>
+                <a class="link" href="index.html">Home</a>
+              </li>
+              
+          </nav>
+         
+      </div>
+    </header>
+<body class="maps-body"></body>
+    
+<div class="container-mapa">
+    
+    <!-- =========MAPA 1========= -->
+    
+    <div class="map">
+        <button class="event-urls" id="search">
+            Search
+          </button>
+          <div id="content" class="container-a">
+            
+          </div>
+   </div>
+   
+
+   <!-- ======MAPA 2======= -->
+
+   <div class="maps">
+    <div id='map' style='width: 800px; height:418px;'></div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaXZhbnNhbmd1ZXpheCIsImEiOiJja2Zmam1sNHUwZmNsMnRubW94OWJ6cHRqIn0.e6q5KOwIX3EAetV5K3krVA';
+    var videoStyle = {
+    'version': 8,
+    'sources': {
+    'satellite': {
+    'type': 'raster',
+    'url': 'mapbox://mapbox.satellite',
+    'tileSize': 256
+    },
+    'video': {
+    'type': 'video',
+    'urls': [
+    'https://static-assets.mapbox.com/mapbox-gl-js/drone.mp4',
+    'https://static-assets.mapbox.com/mapbox-gl-js/drone.webm'
+    ],
+    'coordinates': [
+    [-122.51596391201019, 37.56238816766053],
+    [-122.51467645168304, 37.56410183312965],
+    [-122.51309394836426, 37.563391708549425],
+    [-122.51423120498657, 37.56161849366671]
+    ]
+    }
+    },
+    'layers': [
+    {
+    'id': 'background',
+    'type': 'background',
+    'paint': {
+    'background-color': 'rgb(4,7,14)'
+    }
+    },
+    {
+    'id': 'satellite',
+    'type': 'raster',
+    'source': 'satellite'
+    },
+    {
+    'id': 'video',
+    'type': 'raster',
+    'source': 'video'
+    }
+    ]
+    };
+     
     var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v10',
-        center: [-120, 50],
-        zoom: 2
+    container: 'map',
+    minZoom: 14,
+    zoom: 2,
+    center: [-63.505657,-16.859075],
+    bearing: -96,
+    style: videoStyle
     });
-
-    map.on('load', function () {
-        // Add a geojson point source.
-        // Heatmap layers also work with a vector tile source.
-        map.addSource('earthquakes', {
-            'type': 'geojson',
-            'data':
-                'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson'
-        });
-
-        map.addLayer(
-            {
-                'id': 'earthquakes-heat',
-                'type': 'heatmap',
-                'source': 'earthquakes',
-                'maxzoom': 9,
-                'paint': {
-                    // Increase the heatmap weight based on frequency and property magnitude
-                    'heatmap-weight': [
-                        'interpolate',
-                        ['linear'],
-                        ['get', 'mag'],
-                        0,
-                        0,
-                        6,
-                        1
-                    ],
-                    // Increase the heatmap color weight weight by zoom level
-                    // heatmap-intensity is a multiplier on top of heatmap-weight
-                    'heatmap-intensity': [
-                        'interpolate',
-                        ['linear'],
-                        ['zoom'],
-                        0,
-                        1,
-                        9,
-                        3
-                    ],
-                    // Color ramp for heatmap.  Domain is 0 (low) to 1 (high).
-                    // Begin color ramp at 0-stop with a 0-transparancy color
-                    // to create a blur-like effect.
-                    'heatmap-color': [
-                        'interpolate',
-                        ['linear'],
-                        ['heatmap-density'],
-                        0,
-                        'rgba(33,102,172,0)',
-                        0.2,
-                        'rgb(103,169,207)',
-                        0.4,
-                        'rgb(209,229,240)',
-                        0.6,
-                        'rgb(253,219,199)',
-                        0.8,
-                        'rgb(239,138,98)',
-                        1,
-                        'rgb(178,24,43)'
-                    ],
-                    // Adjust the heatmap radius by zoom level
-                    'heatmap-radius': [
-                        'interpolate',
-                        ['linear'],
-                        ['zoom'],
-                        0,
-                        2,
-                        9,
-                        20
-                    ],
-                    // Transition from heatmap to circle layer by zoom level
-                    'heatmap-opacity': [
-                        'interpolate',
-                        ['linear'],
-                        ['zoom'],
-                        7,
-                        1,
-                        9,
-                        0
-                    ]
-                }
-            },
-            'waterway-label'
-        );
-
-        map.addLayer(
-            {
-                'id': 'earthquakes-point',
-                'type': 'circle',
-                'source': 'earthquakes',
-                'minzoom': 7,
-                'paint': {
-                    // Size circle radius by earthquake magnitude and zoom level
-                    'circle-radius': [
-                        'interpolate',
-                        ['linear'],
-                        ['zoom'],
-                        7,
-                        ['interpolate', ['linear'], ['get', 'mag'], 1, 1, 6, 4],
-                        16,
-                        ['interpolate', ['linear'], ['get', 'mag'], 1, 5, 6, 50]
-                    ],
-                    // Color circle by earthquake magnitude
-                    'circle-color': [
-                        'interpolate',
-                        ['linear'],
-                        ['get', 'mag'],
-                        1,
-                        'rgba(33,102,172,0)',
-                        2,
-                        'rgb(103,169,207)',
-                        3,
-                        'rgb(209,229,240)',
-                        4,
-                        'rgb(253,219,199)',
-                        5,
-                        'rgb(239,138,98)',
-                        6,
-                        'rgb(178,24,43)'
-                    ],
-                    'circle-stroke-color': 'white',
-                    'circle-stroke-width': 1,
-                    // Transition from heatmap to circle layer by zoom level
-                    'circle-opacity': [
-                        'interpolate',
-                        ['linear'],
-                        ['zoom'],
-                        7,
-                        0,
-                        8,
-                        1
-                    ]
-                }
-            },
-            'waterway-label'
-        );
+     
+    var playingVideo = true;
+     
+    map.on('click', function () {
+    playingVideo = !playingVideo;
+     
+    if (playingVideo) map.getSource('video').play();
+    else map.getSource('video').pause();
     });
-</script>
+    </script>
+   
+</div>
+
+</div>
+
+
+
+
+
+
+ 
 
 </body>
 </html>
+
+
+
+
+
